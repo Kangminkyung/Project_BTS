@@ -1,32 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import { Button } from '@material-ui/core';
+import { Button, Select } from '@material-ui/core';
+import * as env from '../utils/environment'
 
-const CategoryView = ({keyword, setCatAll, setCatRegular, setCatMini, setCatSingle, setCatOST}) => {
+
+const CategoryView = ({keyword, categoryChange}) => {
+    const handleChange = (e) => {
+        categoryChange(e.target.value);
+    }
     return (
-        <div style={{display: "flex", justifyContent: "space-around", margin: "auto"}}>
-            <Button onClick={ setCatAll }>전체</Button>
-            <Button onClick={ setCatRegular }>정규</Button>
-            <Button onClick={ setCatMini }>미니</Button>
-            <Button onClick={ setCatSingle }>싱글</Button>
-            <Button onClick={ setCatOST }>OST</Button>
+        <div style={{display: "flex", justifyContent: "flex-end", margin: "auto"}}>
+            <Select native value={keyword} onChange={handleChange}> 
+                <option value="전체">전체</option>
+                    {env.CATEGORY.map((category, index) =>
+                        <option value={category} key={index}>{category}</option>
+                    )}
+            </Select>
         </div>
     );
 }
 
 CategoryView.propTypes = {
-    setCatAll: PropTypes.func,
-    setCatRegular: PropTypes.func,
-    setCatMini: PropTypes.func,
-    setCatSingle: PropTypes.func,
-    setCatOST: PropTypes.func
+    categoryChange: PropTypes.func
 }
 CategoryView.defaultProps = {
-    setCatAll: () => {console.log("setCatAll not defined");},
-    setCatRegular: () => {console.log("setCatRegular not defined");},
-    setCatMini: () => {console.log("setCatMini not defined");}, 
-    setCatSingle: () => {console.log("setCatSingle not defined");}, 
-    setCatOST: () => {console.log("setCatOST not defined");}
+    categoryChange: () => {console.log("categoryChange not defined");}
 }
 
 export default CategoryView;

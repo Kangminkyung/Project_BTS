@@ -118,7 +118,7 @@ class AlbumRegister extends React.Component{
                     <TableCell>{music.track}</TableCell>
                     <TableCell>{music.name}</TableCell>
                     <TableCell><input type="checkbox" name="is_title" checked={music.is_title ? "checked" : ""} /></TableCell>
-                    <TableCell><Button id={index} onClick={this.handleRemove}>삭제</Button></TableCell>
+                    <TableCell></TableCell>
                   </TableRow>
                 )})}
                 <TableRow>
@@ -197,13 +197,11 @@ class AlbumRegister extends React.Component{
       this.setState({
         ...this.state,
         name: '',
-        is_title: false
+        is_title: false,
+        validSubmit: validation.validAlbumRegister(this.state)
       });
     })
-  }
-  handleRemove = (e) => {
-    e.preventDefault();
-    console.log(e.currentTarget.id);
+
   }
 }
 

@@ -70,7 +70,7 @@ class AlbumDetail extends React.PureComponent {
     // 1-1. 댓글 작성
     handleClickCommentAdd = (e) => {
         e.preventDefault();
-        if (validation.validComment(this.state.comment)) {
+        if (!validation.validComment(this.state.comment)) {
             alert('내용을 입력하세요');
             return false;
         }
@@ -156,7 +156,7 @@ class AlbumDetail extends React.PureComponent {
         return (
             <React.Fragment>
             <Header />
-            <div className="container-70 my-3">
+            <div className="container-80 my-3">
                 <div className="my-3" style={{display: "flex", flexWrap: "wrap", alignItems: "center"}}>
                     <div className="detail-img"><img src={this.state.thumbnail} width="100%" alt="" /></div>
                     <div style={{marginLeft: "2rem"}}>
@@ -248,7 +248,6 @@ class AlbumDetail extends React.PureComponent {
                     if(comment.author.username == this.props.currentUser.username){              
                         btn2 = (
                             <div>
-                                <Button id={index} color="primary" size="small" onClick={this.handleClickCommentEdit}>수정</Button>
                                 <Button id={comment.id} color="primary" size="small" onClick={this.handClickCommentDelete}>삭제</Button>
                             </div>
                         );
@@ -280,6 +279,7 @@ class AlbumDetail extends React.PureComponent {
                                                     </IconButton>)
                                                 }
                                             </div>
+                                            {btn2}
                                         </div>
                                     </div>
                                 </div>

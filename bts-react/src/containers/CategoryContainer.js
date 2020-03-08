@@ -9,11 +9,7 @@ const mapStateToProps = (state) => { // 리덕스가 관리하는 상태를 지�
 };
 
 const mapDispatchToProps = (dispatch) => ({ // 상태를 변경시켜야할 때 액션 생성자를 실행
-    setCatAll: () => {dispatch(actions.setCatAll())},
-    setCatRegular: () => {dispatch(actions.setCatRegular())},
-    setCatMini: () => {dispatch(actions.setCatMini())},
-    setCatSingle: () => {dispatch(actions.setCatSingle())},
-    setCatOST: () => {dispatch(actions.setCatOST())},
+    categoryChange: (keyword) => {dispatch(actions.categoryChange(keyword))},
 });
 
 const CategoryContainer = connect(mapStateToProps, mapDispatchToProps)(CategoryView);
